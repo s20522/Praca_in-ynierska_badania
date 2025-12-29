@@ -1,0 +1,305 @@
+================================================================================
+EKSPLORACYJNA ANALIZA DANYCH - HEART FAILURE DATASET
+================================================================================
+
+1. PODSTAWOWE INFORMACJE O ZBIORZE DANYCH
+--------------------------------------------------------------------------------
+Liczba wierszy: 299
+Liczba kolumn: 13
+
+Nazwy kolumn:
+['TIME', 'Event', 'Gender', 'Smoking', 'Diabetes', 'BP', 'Anaemia', 'Age', 'Ejection.Fraction', 'Sodium', 'Creatinine', 'Pletelets', 'CPK']
+
+2. PIERWSZE 5 WIERSZY DANYCH
+--------------------------------------------------------------------------------
+   time  DEATH_EVENT  ...  platelets  creatinine_phosphokinase
+0    97            0  ...  237000.00                       358
+1   180            0  ...  160000.00                       231
+2    31            1  ...  263358.03                       582
+3    87            0  ...  298000.00                       305
+4   113            0  ...  242000.00                      1610
+
+[5 rows x 13 columns]
+
+3. TYPY DANYCH I BRAKUJĄCE WARTOŚCI
+--------------------------------------------------------------------------------
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 299 entries, 0 to 298
+Data columns (total 13 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   time                      299 non-null    int64  
+ 1   DEATH_EVENT               299 non-null    int64  
+ 2   sex                       299 non-null    int64  
+ 3   smoking                   299 non-null    int64  
+ 4   diabetes                  299 non-null    int64  
+ 5   high_blood_pressure       299 non-null    int64  
+ 6   anaemia                   299 non-null    int64  
+ 7   age                       299 non-null    float64
+ 8   ejection_fraction         299 non-null    int64  
+ 9   serum_sodium              299 non-null    int64  
+ 10  serum_creatinine          299 non-null    float64
+ 11  platelets                 299 non-null    float64
+ 12  creatinine_phosphokinase  299 non-null    int64  
+dtypes: float64(3), int64(10)
+memory usage: 30.5 KB
+None
+
+4. STATYSTYKI OPISOWE
+--------------------------------------------------------------------------------
+             time  DEATH_EVENT  ...      platelets  creatinine_phosphokinase
+count  299.000000    299.00000  ...     299.000000                299.000000
+mean   130.260870      0.32107  ...  263358.029264                581.839465
+std     77.614208      0.46767  ...   97804.236869                970.287881
+min      4.000000      0.00000  ...   25100.000000                 23.000000
+25%     73.000000      0.00000  ...  212500.000000                116.500000
+50%    115.000000      0.00000  ...  262000.000000                250.000000
+75%    203.000000      1.00000  ...  303500.000000                582.000000
+max    285.000000      1.00000  ...  850000.000000               7861.000000
+
+[8 rows x 13 columns]
+
+5. BRAKUJĄCE WARTOŚCI
+--------------------------------------------------------------------------------
+time                        0
+DEATH_EVENT                 0
+sex                         0
+smoking                     0
+diabetes                    0
+high_blood_pressure         0
+anaemia                     0
+age                         0
+ejection_fraction           0
+serum_sodium                0
+serum_creatinine            0
+platelets                   0
+creatinine_phosphokinase    0
+dtype: int64
+
+Całkowita liczba brakujących wartości: 0
+
+================================================================================
+ANALIZA ZMIENNEJ CELU (DEATH_EVENT)
+================================================================================
+
+Rozkład zmiennej DEATH_EVENT:
+Przeżyli (0): 203 (67.89%)
+Zmarli (1): 96 (32.11%)
+
+✓ Zapisano wykres: results/01_death_event_distribution.png
+
+================================================================================
+ANALIZA CECH NUMERYCZNYCH
+================================================================================
+
+Statystyki opisowe dla cech numerycznych:
+              age  ejection_fraction  ...  creatinine_phosphokinase        time
+count  299.000000         299.000000  ...                299.000000  299.000000
+mean    60.833893          38.083612  ...                581.839465  130.260870
+std     11.894809          11.834841  ...                970.287881   77.614208
+min     40.000000          14.000000  ...                 23.000000    4.000000
+25%     51.000000          30.000000  ...                116.500000   73.000000
+50%     60.000000          38.000000  ...                250.000000  115.000000
+75%     70.000000          45.000000  ...                582.000000  203.000000
+max     95.000000          80.000000  ...               7861.000000  285.000000
+
+[8 rows x 7 columns]
+
+✓ Zapisano wykres: results/02_numerical_distributions.png
+
+================================================================================
+ANALIZA CECH BINARNYCH
+================================================================================
+
+Rozkład cech binarnych:
+
+sex:
+  0: 105 (35.12%)
+  1: 194 (64.88%)
+
+smoking:
+  0: 203 (67.89%)
+  1: 96 (32.11%)
+
+diabetes:
+  0: 174 (58.19%)
+  1: 125 (41.81%)
+
+high_blood_pressure:
+  0: 194 (64.88%)
+  1: 105 (35.12%)
+
+anaemia:
+  0: 170 (56.86%)
+  1: 129 (43.14%)
+
+✓ Zapisano wykres: results/03_binary_distributions.png
+
+================================================================================
+ANALIZA KORELACJI
+================================================================================
+
+Macierz korelacji:
+                              time  ...  creatinine_phosphokinase
+time                      1.000000  ...                 -0.009346
+DEATH_EVENT              -0.526964  ...                  0.062728
+sex                      -0.015608  ...                  0.079791
+smoking                  -0.022839  ...                  0.002421
+diabetes                  0.033726  ...                 -0.009639
+high_blood_pressure      -0.196439  ...                 -0.070590
+anaemia                  -0.141414  ...                 -0.190741
+age                      -0.224068  ...                 -0.081584
+ejection_fraction         0.041729  ...                 -0.044080
+serum_sodium              0.087640  ...                  0.059550
+serum_creatinine         -0.149315  ...                 -0.016408
+platelets                 0.010514  ...                  0.024463
+creatinine_phosphokinase -0.009346  ...                  1.000000
+
+[13 rows x 13 columns]
+
+Korelacje z DEATH_EVENT (posortowane):
+DEATH_EVENT                 1.000000
+serum_creatinine            0.294278
+age                         0.253729
+high_blood_pressure         0.079351
+anaemia                     0.066270
+creatinine_phosphokinase    0.062728
+diabetes                   -0.001943
+sex                        -0.004316
+smoking                    -0.012623
+platelets                  -0.049139
+serum_sodium               -0.195204
+ejection_fraction          -0.268603
+time                       -0.526964
+Name: DEATH_EVENT, dtype: float64
+
+✓ Zapisano wykres: results/04_correlation_matrix.png
+✓ Zapisano wykres: results/05_death_event_correlations.png
+
+================================================================================
+PORÓWNANIE GRUP: PRZEŻYLI VS ZMARLI
+================================================================================
+
+Liczba pacjentów, którzy przeżyli: 203
+Liczba pacjentów, którzy zmarli: 96
+
+Statystyki opisowe - PRZEŻYLI:
+              age  ejection_fraction  ...  creatinine_phosphokinase        time
+count  203.000000         203.000000  ...                203.000000  203.000000
+mean    58.761906          40.266010  ...                540.054187  158.339901
+std     10.637890          10.859963  ...                753.799572   67.742872
+min     40.000000          17.000000  ...                 30.000000   12.000000
+25%     50.000000          35.000000  ...                109.000000   95.000000
+50%     60.000000          38.000000  ...                245.000000  172.000000
+75%     65.000000          45.000000  ...                582.000000  213.000000
+max     90.000000          80.000000  ...               5209.000000  285.000000
+
+[8 rows x 7 columns]
+
+Statystyki opisowe - ZMARLI:
+             age  ejection_fraction  ...  creatinine_phosphokinase        time
+count  96.000000          96.000000  ...                 96.000000   96.000000
+mean   65.215281          33.468750  ...                670.197917   70.885417
+std    13.214556          12.525303  ...               1316.580640   62.378281
+min    42.000000          14.000000  ...                 23.000000    4.000000
+25%    55.000000          25.000000  ...                128.750000   25.500000
+50%    65.000000          30.000000  ...                259.000000   44.500000
+75%    75.000000          38.000000  ...                582.000000  102.250000
+max    95.000000          70.000000  ...               7861.000000  241.000000
+
+[8 rows x 7 columns]
+
+✓ Zapisano wykres: results/06_survived_vs_died_comparison.png
+
+================================================================================
+ANALIZA WARTOŚCI ODSTAJĄCYCH (OUTLIERS)
+================================================================================
+
+Wartości odstające (metoda IQR):
+
+age:
+  Zakres normalny: [22.50, 98.50]
+  Liczba wartości odstających: 0 (0.00%)
+
+ejection_fraction:
+  Zakres normalny: [7.50, 67.50]
+  Liczba wartości odstających: 2 (0.67%)
+
+serum_creatinine:
+  Zakres normalny: [0.15, 2.15]
+  Liczba wartości odstających: 29 (9.70%)
+
+serum_sodium:
+  Zakres normalny: [125.00, 149.00]
+  Liczba wartości odstających: 4 (1.34%)
+
+platelets:
+  Zakres normalny: [76000.00, 440000.00]
+  Liczba wartości odstających: 21 (7.02%)
+
+creatinine_phosphokinase:
+  Zakres normalny: [-581.75, 1280.25]
+  Liczba wartości odstających: 29 (9.70%)
+
+time:
+  Zakres normalny: [-122.00, 398.00]
+  Liczba wartości odstających: 0 (0.00%)
+
+================================================================================
+ANALIZA CECH BINARNYCH W KONTEKŚCIE DEATH_EVENT
+================================================================================
+
+✓ Zapisano wykres: results/07_binary_vs_death_event.png
+
+================================================================================
+PODSUMOWANIE EKSPLORACYJNEJ ANALIZY DANYCH
+================================================================================
+
+KLUCZOWE WNIOSKI:
+
+1. STRUKTURA DANYCH:
+   - Zbiór zawiera 299 pacjentów z 13 zmiennymi
+   - Brak brakujących wartości - dane są kompletne
+   - Niezbalansowanie klas: 67.89% przeżyło, 32.11% zmarło
+
+2. NAJWAŻNIEJSZE CECHY PREDYKCYJNE (na podstawie korelacji z DEATH_EVENT):
+   - time: silna dodatnia korelacja (UWAGA: target leakage!)
+   - ejection_fraction: ujemna korelacja (niższa frakcja = wyższe ryzyko)
+   - serum_creatinine: dodatnia korelacja (wyższy poziom = wyższe ryzyko)
+   - age: dodatnia korelacja (starszy wiek = wyższe ryzyko)
+   - serum_sodium: ujemna korelacja (niższy poziom = wyższe ryzyko)
+
+3. RÓŻNICE MIĘDZY GRUPAMI (PRZEŻYLI VS ZMARLI):
+   - Zmarli mieli istotnie statystycznie:
+     * Niższą frakcję wyrzutową (ejection_fraction)
+     * Wyższy poziom kreatyniny w surowicy (serum_creatinine)
+     * Wyższy wiek (age)
+     * Niższy poziom sodu w surowicy (serum_sodium)
+
+4. WARTOŚCI ODSTAJĄCE:
+   - Występują w większości cech numerycznych
+   - Szczególnie widoczne w: creatinine_phosphokinase, platelets, serum_creatinine
+   - Wymagają uwagi podczas modelowania (nie usuwać - mogą być klinicznie istotne)
+
+5. CECHY BINARNE:
+   - Anaemia i high_blood_pressure wykazują istotne statystycznie związki z DEATH_EVENT
+   - Sex, smoking, diabetes - słabsze związki
+
+6. PROBLEM TARGET LEAKAGE:
+   - Cecha 'time' jest silnie skorelowana z DEATH_EVENT
+   - W rzeczywistości nie znamy czasu do zgonu przed jego wystąpieniem
+   - MUSI zostać wykluczona z modeli predykcyjnych
+
+REKOMENDACJE DO DALSZYCH ETAPÓW:
+- Wykluczyć cechę 'time' z modelowania predykcyjnego
+- Skupić się na cechach: ejection_fraction, serum_creatinine, age, serum_sodium
+- Rozważyć inżynierię cech (interakcje, dyskretyzacja)
+- Zastosować techniki balansowania klas (SMOTE, class weights)
+- Normalizacja/standaryzacja przed trenowaniem modeli neuronowych
+
+
+================================================================================
+ANALIZA ZAKOŃCZONA POMYŚLNIE
+================================================================================
+
+Wszystkie wykresy zostały zapisane w katalogu 'results/'
