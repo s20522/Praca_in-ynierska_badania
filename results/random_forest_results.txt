@@ -1,0 +1,32 @@
+================================================================================
+WYNIKI MODELU RANDOM FOREST
+================================================================================
+
+WYBRANE CECHY:
+['age', 'ejection_fraction', 'serum_creatinine']
+
+OPTYMALNE HIPERPARAMETRY:
+  n_estimators: 100
+  min_samples_split: 5
+  min_samples_leaf: 8
+  max_features: None
+  max_depth: 50
+  class_weight: balanced
+  bootstrap: True
+
+WYNIKI NA ZBIORZE TESTOWYM:
+  Accuracy:  0.7333
+  Precision: 0.5484
+  Recall:    0.8947
+  F1-score:  0.6800
+  AUC-ROC:   0.7689
+
+WALIDACJA KRZYŻOWA (5-FOLD):
+  Accuracy:  0.7629 ± 0.0646
+  F1-score:  0.6661 ± 0.0857
+  AUC-ROC:   0.8233 ± 0.0554
+
+WAŻNOŚĆ CECH:
+  age: 0.2017
+  ejection_fraction: 0.3376
+  serum_creatinine: 0.4607
