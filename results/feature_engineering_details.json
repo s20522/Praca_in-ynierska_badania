@@ -1,0 +1,81 @@
+{
+  "Baseline": {
+    "accuracy": 0.7333333333333333,
+    "precision": 0.5483870967741935,
+    "recall": 0.8947368421052632,
+    "f1": 0.68,
+    "auc": 0.7689345314505777,
+    "features": [
+      "age",
+      "ejection_fraction",
+      "serum_creatinine"
+    ],
+    "n_features": 3
+  },
+  "Discretization": {
+    "accuracy": 0.6166666666666667,
+    "precision": 0.42857142857142855,
+    "recall": 0.631578947368421,
+    "f1": 0.5106382978723404,
+    "auc": 0.6694480102695763,
+    "features": [
+      "age_cat",
+      "ef_cat",
+      "creat_cat"
+    ],
+    "n_features": 3
+  },
+  "Interactions": {
+    "accuracy": 0.7333333333333333,
+    "precision": 0.5517241379310345,
+    "recall": 0.8421052631578947,
+    "f1": 0.6666666666666666,
+    "auc": 0.7522464698331195,
+    "features": [
+      "age",
+      "ejection_fraction",
+      "serum_creatinine",
+      "age_x_creat",
+      "ef_x_sodium",
+      "age_x_ef"
+    ],
+    "n_features": 6
+  },
+  "MinMax": {
+    "accuracy": 0.7333333333333333,
+    "precision": 0.5483870967741935,
+    "recall": 0.8947368421052632,
+    "f1": 0.68,
+    "auc": 0.7689345314505777,
+    "features": [
+      "age",
+      "ejection_fraction",
+      "serum_creatinine"
+    ],
+    "n_features": 3
+  },
+  "All_Features": {
+    "accuracy": 0.7166666666666667,
+    "precision": 0.5333333333333333,
+    "recall": 0.8421052631578947,
+    "f1": 0.6530612244897959,
+    "auc": 0.72400513478819,
+    "features": [
+      "age",
+      "anaemia",
+      "creatinine_phosphokinase",
+      "diabetes",
+      "ejection_fraction",
+      "high_blood_pressure",
+      "platelets",
+      "serum_creatinine",
+      "serum_sodium",
+      "sex",
+      "smoking",
+      "age_x_creat",
+      "ef_x_sodium",
+      "age_x_ef"
+    ],
+    "n_features": 14
+  }
+}

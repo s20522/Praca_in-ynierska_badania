@@ -1,0 +1,123 @@
+================================================================================
+NOWE EKSPERYMENTY - INŻYNIERIA CECH
+================================================================================
+
+Rozmiar zbioru danych: 299 wierszy, 13 kolumn
+Kolumny po mapowaniu: ['time', 'DEATH_EVENT', 'sex', 'smoking', 'diabetes', 'high_blood_pressure', 'anaemia', 'age', 'ejection_fraction', 'serum_sodium', 'serum_creatinine', 'platelets', 'creatinine_phosphokinase']
+
+================================================================================
+EKSPERYMENT 0: MODEL BAZOWY (BASELINE)
+================================================================================
+Cechy: age, ejection_fraction, serum_creatinine (surowe)
+Normalizacja: StandardScaler
+
+Kształt X_baseline: (299, 3)
+Kształt y: (299,)
+
+Wyniki:
+  Accuracy:  0.7333
+  Precision: 0.5484
+  Recall:    0.8947
+  F1-score:  0.6800
+  AUC-ROC:   0.7689
+
+================================================================================
+EKSPERYMENT 1: DYSKRETYZACJA CECH
+================================================================================
+Podział cech ciągłych na kategorie kliniczne
+
+Rozkład kategorii:
+Age categories: {0: 162, 1: 119, 2: 18}
+EF categories: {0: 93, 1: 146, 2: 60}
+Creatinine categories: {0: 198, 1: 87, 2: 14}
+
+Wyniki:
+  Accuracy:  0.6167
+  Precision: 0.4286
+  Recall:    0.6316
+  F1-score:  0.5106
+  AUC-ROC:   0.6694
+
+================================================================================
+EKSPERYMENT 2: CECHY INTERAKCYJNE
+================================================================================
+Dodanie cech reprezentujących interakcje między zmiennymi
+
+Cechy: ['age', 'ejection_fraction', 'serum_creatinine', 'age_x_creat', 'ef_x_sodium', 'age_x_ef']
+Liczba cech: 6
+
+Wyniki:
+  Accuracy:  0.7333
+  Precision: 0.5517
+  Recall:    0.8421
+  F1-score:  0.6667
+  AUC-ROC:   0.7522
+
+Ważność cech (z interakcjami):
+  age: 0.0469
+  ejection_fraction: 0.0314
+  serum_creatinine: 0.0755
+  age_x_creat: 0.4360
+  ef_x_sodium: 0.2915
+  age_x_ef: 0.1186
+
+================================================================================
+EKSPERYMENT 3: MINMAX NORMALIZACJA
+================================================================================
+Użycie MinMaxScaler zamiast StandardScaler
+
+Wyniki:
+  Accuracy:  0.7333
+  Precision: 0.5484
+  Recall:    0.8947
+  F1-score:  0.6800
+  AUC-ROC:   0.7689
+
+================================================================================
+EKSPERYMENT 4: WSZYSTKIE CECHY + INTERAKCJE
+================================================================================
+Połączenie wszystkich cech oryginalnych z interakcjami
+
+Liczba cech: 14
+
+Wyniki:
+  Accuracy:  0.7167
+  Precision: 0.5333
+  Recall:    0.8421
+  F1-score:  0.6531
+  AUC-ROC:   0.7240
+
+Top 10 najważniejszych cech:
+  age_x_creat: 0.3916
+  ef_x_sodium: 0.2410
+  age_x_ef: 0.0857
+  serum_creatinine: 0.0597
+  platelets: 0.0479
+  creatinine_phosphokinase: 0.0459
+  serum_sodium: 0.0367
+  age: 0.0356
+  ejection_fraction: 0.0272
+  anaemia: 0.0117
+
+================================================================================
+PODSUMOWANIE WSZYSTKICH EKSPERYMENTÓW
+================================================================================
+
+                accuracy precision    recall        f1       auc n_features
+Baseline        0.733333  0.548387  0.894737      0.68  0.768935          3
+Discretization  0.616667  0.428571  0.631579  0.510638  0.669448          3
+Interactions    0.733333  0.551724  0.842105  0.666667  0.752246          6
+MinMax          0.733333  0.548387  0.894737      0.68  0.768935          3
+All_Features    0.716667  0.533333  0.842105  0.653061  0.724005         14
+
+✓ Zapisano: results/feature_engineering_comparison.csv
+✓ Zapisano: results/feature_engineering_details.json
+
+🏆 Najlepszy model (F1-score): Baseline
+   F1-score: 0.6800
+   Recall: 0.8947
+   AUC-ROC: 0.7689
+
+================================================================================
+EKSPERYMENTY ZAKOŃCZONE POMYŚLNIE
+================================================================================
