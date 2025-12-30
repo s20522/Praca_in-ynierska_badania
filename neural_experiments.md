@@ -95,6 +95,45 @@ Optymalizator to algorytm, który decyduje, jak sieć ma się uczyć i modyfikow
 
 ---
 
+## Krzywe Uczenia: Podglądamy Proces Treningu
+
+Krzywe uczenia to wykresy pokazujące, jak model się uczy w czasie (epoka po epoce). Obserwując je, możemy zobaczyć, czy model:
+- **Uczy się dobrze** - obie krzywe (treningowa i walidacyjna) spadają razem
+- **Przeuczy się** (overfitting) - krzywa treningowa spada, ale walidacyjna rośnie
+- **Niedouczy się** (underfitting) - obie krzywe są wysokie i nie spadają
+
+### Porównanie: Bez regularyzacji vs Z regularyzacją
+
+![Krzywe uczenia - Loss](results/nn_fig_08_learning_curves_loss.png)
+
+> **Rysunek 6.** Porównanie krzywych uczenia dla Loss. **Lewy wykres** pokazuje model bez regularyzacji - widoczne przeuczenie (validation loss rośnie po pewnym momencie). **Prawy wykres** pokazuje najlepszy model z regularyzacją - obie krzywe są zbliżone, co oznacza brak przeuczenia.
+
+![Krzywe uczenia - Accuracy](results/nn_fig_09_learning_curves_accuracy.png)
+
+> **Rysunek 7.** Porównanie krzywych uczenia dla Accuracy. Model bez regularyzacji osiąga bardzo wysoką accuracy na danych treningowych, ale znacznie niższą na walidacyjnych (przeuczenie). Model z regularyzacją ma bardziej zbalansowane wyniki.
+
+**Kluczowa obserwacja:** Na lewym wykresie (bez regularyzacji) widzimy klasyczny przykład przeuczenia - po około 20-30 epoce validation loss zaczyna rosnąć, mimo że training loss dalej spada. To oznacza, że model "nauczył się na pamięć" danych treningowych, ale nie potrafi generalizować na nowe dane.
+
+### Wpływ Różnych Technik Regularyzacji
+
+![Porównanie technik regularyzacji](results/nn_fig_10_regularization_comparison.png)
+
+> **Rysunek 8.** Porównanie validation loss dla różnych technik regularyzacji. Model bez regularyzacji (czerwony) ma najwyższy i najbardziej niestabilny loss. Dropout i L2 znacząco poprawiają sytuację, a ich kombinacja (fioletowy) daje najlepsze rezultaty.
+
+**Wnioski z krzywych uczenia:**
+- Regularyzacja jest **absolutnie kluczowa** na małych zbiorach danych
+- Dropout i L2 działają komplementarnie - razem dają lepsze efekty niż osobno
+- Model bez regularyzacji szybko się przeuczał (po ~20-30 epokach)
+- Najlepszy model (Dropout + L2) trenował się stabilnie przez ~96 epok
+
+### Porównanie Architektur
+
+![Porównanie architektur](results/nn_fig_11_architecture_learning_curves.png)
+
+> **Rysunek 9.** Porównanie krzywych uczenia dla płytkiej [128] i głębszej [128, 64] architektury. Obie architektury uczą się w podobny sposób, co potwierdza, że na tym małym zbiorze danych dodatkowa głębokość nie przynosi korzyści.
+
+---
+
 ## Finał: Najlepszy Model MLP vs Random Forest
 
 Po serii eksperymentów, zebraliśmy najlepsze komponenty i zbudowaliśmy **optymalny model MLP**:
@@ -108,13 +147,13 @@ Jak wypadł w starciu z naszym mistrzem, Random Forest?
 
 ![MLP vs RF](results/nn_fig_06_mlp_vs_rf.png)
 
-> **Rysunek 6.** Porównanie kluczowych metryk dla najlepszych modeli MLP oraz modelu Random Forest (podświetlony na zielono).
+> **Rysunek 10.** Porównanie kluczowych metryk dla najlepszych modeli MLP oraz modelu Random Forest (podświetlony na zielono).
 
 ### Tabela Porównawcza (Top 10)
 
 ![Tabela podsumowująca](results/nn_fig_07_summary_table.png)
 
-> **Rysunek 7.** Tabela z 10 najlepszymi modelami ze wszystkich eksperymentów. Na szczycie listy znajduje się Random Forest.
+> **Rysunek 11.** Tabela z 10 najlepszymi modelami ze wszystkich eksperymentów. Na szczycie listy znajduje się Random Forest.
 
 ---
 

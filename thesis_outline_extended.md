@@ -134,14 +134,21 @@
 4.3. **Eksperyment 3: Systematyczna Budowa Sieci Neuronowej (MLP)**
     - **Cel:** Znalezienie optymalnej konfiguracji MLP poprzez serię kontrolowanych eksperymentów i porównanie jej z modelem bazowym.
     - **Metoda:** Opisz serię 5 mini-eksperymentów, w których testowałeś wpływ: architektury, funkcji aktywacji, regularyzacji Dropout, regularyzacji L2 i optymalizatorów.
-    - **Wyniki:**
-        - **Wykres 5:** *Porównanie kluczowych metryk dla najlepszych konfiguracji MLP oraz modelu Random Forest.*
+    - **Krzywe uczenia:** Przedstaw krzywe uczenia (training/validation loss i accuracy) dla kluczowych modeli, aby pokazać proces treningu i zidentyfikować przeuczenie.
+        - **Wykres 5:** *Porównanie krzywych uczenia dla modelu bez regularyzacji vs z regularyzacją.*
+            - *(Wstaw `results/nn_fig_08_learning_curves_loss.png`)*
+            - Opisz widoczne przeuczenie w modelu bez regularyzacji (validation loss rośnie po pewnym momencie).
+        - **Wykres 6:** *Wpływ różnych technik regularyzacji na validation loss.*
+            - *(Wstaw `results/nn_fig_10_regularization_comparison.png`)*
+            - Wskaż, że kombinacja Dropout + L2 daje najstabilniejsze wyniki.
+    - **Wyniki końcowe:**
+        - **Wykres 7:** *Porównanie kluczowych metryk dla najlepszych konfiguracji MLP oraz modelu Random Forest.*
             - *(Wstaw `results/nn_fig_06_mlp_vs_rf.png`)*
             - Wskaż na wykresie, że zielony słupek (Random Forest) dominuje, zwłaszcza w metryce Recall.
         - **Tabela 3:** *Ranking 10 najlepszych modeli ze wszystkich przeprowadzonych eksperymentów.*
             - *(Wstaw `results/nn_fig_07_summary_table.png`)*
             - Zwróć uwagę, że na szczycie tabeli znajduje się Random Forest, a najlepszy model MLP jest dopiero na drugim miejscu.
-    - **Wniosek:** Mimo szeroko zakrojonej optymalizacji, żaden z 24 przetestowanych wariantów MLP nie zdołał pokonać prostszego modelu Random Forest.
+    - **Wniosek:** Mimo szeroko zakrojonej optymalizacji, żaden z 24 przetestowanych wariantów MLP nie zdołał pokonać prostszego modelu Random Forest. Krzywe uczenia pokazały, że regularyzacja była kluczowa dla zapobiegania przeuczeniu.
 
 ---
 
